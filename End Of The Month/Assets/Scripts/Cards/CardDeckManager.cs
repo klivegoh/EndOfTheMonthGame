@@ -3,19 +3,40 @@ using UnityEngine;
 
 public class CardDeckManager : MonoBehaviour
 {
-    [SerializeField] private List<DecisionCardData> allCards;
+    [SerializeField] private GameDataManager gameDataManager;
 
-    public List<DecisionCardData> DrawCards(int amount)
+    public List<DecisionCardData> DrawCards(int amount, int currentDay)
     {
-        List<DecisionCardData> availableCards = new List<DecisionCardData>(allCards);
+        List<DecisionCardData> availableCards = new List<DecisionCardData>();
+
+        foreach (DecisionCardData card in gameDataManager.AllCards)
+        {
+            if (!card.isActive)
+            {
+                continue;
+            }
+
+            if (currentDay < card.minDay || currentDay > card.maxDay)
+            {
+                continue;
+            }
+
+            availableCards.Add(card);
+        }
+
         List<DecisionCardData> drawnCards = new List<DecisionCardData>();
 
         for (int i = 0; i < amount; i++)
         {
-            if (availableCards.Count == 0) break;
+            if (availableCards.Count == 0)
+            {
+                break;
+            }
 
             int randomIndex = Random.Range(0, availableCards.Count);
-            drawnCards.Add(availableCards[randomIndex]);
+            DecisionCardData selectedCard = availableCards[randomIndex];
+
+            drawnCards.Add(selectedCard);
             availableCards.RemoveAt(randomIndex);
         }
 

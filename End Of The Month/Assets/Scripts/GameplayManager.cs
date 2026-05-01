@@ -38,7 +38,7 @@ public class GameplayManager : MonoBehaviour
     {
         uiManager.UpdateDayText(currentDay, maxDays);
 
-        List<DecisionCardData> drawnCards = deckManager.DrawCards(3);
+        List<DecisionCardData> drawnCards = deckManager.DrawCards(3, currentDay);
 
         for (int i = 0; i < cardSlots.Count; i++)
         {

@@ -27,11 +27,16 @@ public class BudgetManager : MonoBehaviour
     {
         currentBalance -= amount;
 
+        if (category == CategoryType.Income)
+        {
+            return;
+        }
+
         BudgetCategory budget = GetCategory(category);
 
         if (budget != null)
         {
-            budget.spentAmount += amount;
+            budget.spentAmount += Mathf.Max(0, amount);
         }
     }
 

@@ -18,8 +18,20 @@ public class DecisionCardUI : MonoBehaviour
         gameplayManager = manager;
 
         nameText.text = data.cardName;
-        costText.text = "-$" + data.cost;
         descriptionText.text = data.description;
+
+        if (data.cost < 0)
+        {
+            costText.text = "+$" + Mathf.Abs(data.cost);
+        }
+        else if (data.cost == 0)
+        {
+            costText.text = "$0";
+        }
+        else
+        {
+            costText.text = "-$" + data.cost;
+        }
 
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(OnClicked);

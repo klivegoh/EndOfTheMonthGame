@@ -1,0 +1,16 @@
+CardID,CardName,CategoryID,CardType,Cost,SavingsChange,Weight,MinDay,MaxDay,RequiresTag,GrantsTag,IsActive,ShortText,FeedbackText
+FOOD_001,Cook at Home,FOOD,Choice,2,0,12,1,7,,,TRUE,Prepare a simple meal.,Low-cost meal choice. Small savings compound over time.
+FOOD_002,Canteen Meal,FOOD,Choice,4,0,10,1,7,,,TRUE,Buy a normal school meal.,"A reasonable choice, but it still counts toward the food budget."
+FOOD_003,Fast Food,FOOD,Choice,7,0,8,1,7,,,TRUE,Grab fast food after school.,"Convenient, but repeated small costs can push food over budget."
+FOOD_004,Forgot Lunch,FOOD,Event,6,0,6,2,7,,,TRUE,You forgot to pack lunch.,Unplanned expenses are why tracking matters.
+TRAN_001,Take Bus,TRANSPORT,Choice,2,0,12,1,7,,,TRUE,Use the usual bus route.,Reliable option with predictable cost.
+TRAN_002,Walk Home,TRANSPORT,Choice,0,0,7,1,7,,,TRUE,Walk instead of taking transport.,"Saves money today, but may not always be practical."
+TRAN_003,MRT Top-Up,TRANSPORT,Event,10,0,5,2,7,,,TRUE,Your travel card needs topping up.,Fixed transport costs can suddenly reduce available cash.
+TRAN_004,Late Ride,TRANSPORT,Choice,12,0,4,3,7,,,TRUE,Pay for a faster ride.,Solves a short-term problem but heavily impacts transport budget.
+LEIS_001,Skip Outing,LEISURE,Choice,0,0,8,1,7,,,TRUE,Politely skip an outing.,Saying no can protect the savings goal.
+LEIS_002,Cheap Hangout,LEISURE,Choice,3,0,10,1,7,,,TRUE,Hang out at a low-cost place.,Balances social life and budgeting.
+LEIS_003,Movie with Friends,LEISURE,Choice,9,0,7,2,7,,,TRUE,Watch a movie after school.,"Fun choices are valid, but need planning."
+LEIS_004,Friend Birthday Gift,LEISURE,Event,8,0,5,3,7,,,TRUE,Buy a small gift.,Social spending can be meaningful but still needs tracking.
+SAVE_001,Set Aside Savings,SAVINGS,Choice,0,5,10,1,7,,,TRUE,Move money into savings.,Paying yourself first protects the goal.
+SAVE_002,Use Savings Buffer,SAVINGS,Event,0,-5,4,4,7,,,TRUE,Dip into savings to cover an expense.,Using savings solves the moment but delays the goal.
+INC_001,Help at Event,INCOME,Income,-10,0,3,3,7,,,TRUE,Earn a small extra allowance.,Extra income can recover from earlier overspending.

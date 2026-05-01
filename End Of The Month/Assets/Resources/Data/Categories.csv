@@ -1,0 +1,5 @@
+CategoryID,DisplayName,DefaultBudgetAmount,DefaultBudgetPercent,BudgetType,WarningAtPercent,IsEssential,ColorHex,LearningPurpose
+FOOD,Food,$35,29%,Spend,80%,TRUE,#8BC34A,Shows how daily meals accumulate over a week.
+TRANSPORT,Transport,$20,17%,Spend,80%,TRUE,#03A9F4,Covers bus/MRT/top-up decisions and commute trade-offs.
+LEISURE,Leisure,$15,13%,Spend,80%,FALSE,#FFB74D,Makes wants visible without judging the player.
+SAVINGS,Savings Goal,$50,42%,Goal,100%,TRUE,#9575CD,Represents the target the player is trying to preserve.
