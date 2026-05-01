@@ -1,16 +1,24 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CardDeckManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private List<DecisionCardData> allCards;
 
-    // Update is called once per frame
-    void Update()
+    public List<DecisionCardData> DrawCards(int amount)
     {
-        
+        List<DecisionCardData> availableCards = new List<DecisionCardData>(allCards);
+        List<DecisionCardData> drawnCards = new List<DecisionCardData>();
+
+        for (int i = 0; i < amount; i++)
+        {
+            if (availableCards.Count == 0) break;
+
+            int randomIndex = Random.Range(0, availableCards.Count);
+            drawnCards.Add(availableCards[randomIndex]);
+            availableCards.RemoveAt(randomIndex);
+        }
+
+        return drawnCards;
     }
 }

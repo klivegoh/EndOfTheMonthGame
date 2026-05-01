@@ -2,15 +2,21 @@ using UnityEngine;
 
 public class BudgetSetupController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private BudgetManager budgetManager;
+    [SerializeField] private GameObject setupScreen;
+    [SerializeField] private GameObject gameplayScreen;
+    [SerializeField] private GameplayManager gameplayManager;
+
+    public void ConfirmBudget()
     {
-        
+        setupScreen.SetActive(false);
+        gameplayScreen.SetActive(true);
+
+        gameplayManager.BeginRun();
     }
 
-    // Update is called once per frame
-    void Update()
+    public int ConvertPercentToMoney(float percent)
     {
-        
+        return Mathf.RoundToInt(budgetManager.startingBalance * percent);
     }
 }
