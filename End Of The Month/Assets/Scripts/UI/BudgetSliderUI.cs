@@ -8,22 +8,59 @@ public class BudgetSliderUI : MonoBehaviour
     [SerializeField] private Slider slider;
     [SerializeField] private TMP_Text percentText;
     [SerializeField] private TMP_Text moneyText;
-    [SerializeField] private BudgetManager budgetManager;
 
-    private void Start()
+    private BudgetAllocationController controller;
+    private bool isUpdating;
+
+    public CategoryType Category => category;
+    public int Percent => Mathf.RoundToInt(slider.value);
+
+    public void Init(BudgetAllocationController controllerRef, int defaultPercent)
     {
-        slider.onValueChanged.AddListener(UpdateBudget);
-        UpdateBudget(slider.value);
+        controller = controllerRef;
+
+        slider.wholeNumbers = true;
+        slider.minValue = 0;
+        slider.maxValue = 100;
+
+        SetPercent(defaultPercent, false);
+
+        slider.onValueChanged.RemoveAllListeners();
+        slider.onValueChanged.AddListener(OnSliderChanged);
     }
 
-    private void UpdateBudget(float value)
+    private void OnSliderChanged(float value)
     {
-        int percent = Mathf.RoundToInt(value);
-        int money = Mathf.RoundToInt(budgetManager.startingBalance * (percent / 100f));
+        if (isUpdating) return;
 
+        controller.OnSliderChanged(this);
+    }
+
+    public void SetPercent(int percent, bool notify)
+    {
+        isUpdating = true;
+
+        slider.value = percent;
+        UpdateText(percent);
+
+        isUpdating = false;
+
+        if (notify && controller != null)
+        {
+            controller.OnSliderChanged(this);
+        }
+    }
+
+    
+
+    public void UpdateText(int percent)
+    {
         percentText.text = percent + "%";
-        moneyText.text = "$" + money;
+    }
 
-        budgetManager.SetCategoryBudget(category, money);
+    public void UpdateMoney(int startingBalance)
+    {
+        int money = Mathf.RoundToInt(startingBalance * (Percent / 100f));
+        moneyText.text = "$" + money;
     }
 }

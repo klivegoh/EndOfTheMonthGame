@@ -20,6 +20,13 @@ public class UIManager : MonoBehaviour
     [Header("Scenario UI")]
     [SerializeField] private TMP_Text eventPromptText;
 
+    [Header("Streak UI")]
+    [SerializeField] private TMP_Text streakText;
+
+    [Header("Reward Popup")]
+    [SerializeField] private GameObject rewardPopup;
+    [SerializeField] private TMP_Text rewardPopupText;
+
     public void UpdateAllUI()
     {
         balanceText.text = "$" + budgetManager.currentBalance;
@@ -108,5 +115,32 @@ public class UIManager : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void UpdateStreakText(string message)
+    {
+        if (streakText != null)
+        {
+            streakText.text = message;
+        }
+    }
+
+    public void ShowRewardPopup(string message)
+    {
+        if (rewardPopup == null || rewardPopupText == null)
+        {
+            return;
+        }
+
+        rewardPopup.SetActive(true);
+        rewardPopupText.text = message;
+    }
+
+    public void HideRewardPopup()
+    {
+        if (rewardPopup != null)
+        {
+            rewardPopup.SetActive(false);
+        }
     }
 }

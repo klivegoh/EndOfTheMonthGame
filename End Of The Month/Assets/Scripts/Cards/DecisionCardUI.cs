@@ -18,7 +18,7 @@ public class DecisionCardUI : MonoBehaviour
         gameplayManager = manager;
 
         nameText.text = data.choiceName;
-        descriptionText.text = data.feedbackText;
+        descriptionText.text = data.description;
 
         if (data.cost < 0)
         {

@@ -23,7 +23,7 @@ public class CategoryBarUI : MonoBehaviour
         int percent = Mathf.RoundToInt(usage * 100);
 
         labelText.text = data.category.ToString();
-        valueText.text = percent + "%  $" + data.spentAmount + " / $" + data.allocatedAmount;
+        valueText.text = percent + "%\n$" + data.spentAmount + " / $" + data.allocatedAmount;
 
         bool overBudget = data.IsOverBudget;
         warningText.gameObject.SetActive(overBudget);

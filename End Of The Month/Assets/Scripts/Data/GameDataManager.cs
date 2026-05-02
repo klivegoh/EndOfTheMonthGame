@@ -118,15 +118,14 @@ public class GameDataManager : MonoBehaviour
 
         // Expected header:
         // Day, DayName, ScenarioName, ScenarioText,
-        // Choice1Name, Choice1Category, Choice1Cost, Choice1Feedback,
-        // Choice2Name, Choice2Category, Choice2Cost, Choice2Feedback,
-        // Choice3Name, Choice3Category, Choice3Cost, Choice3Feedback,
-        // DesignPurpose
+        // Choice1Name, Choice1Category, Choice1Cost, Choice1Description, Choice1Feedback,
+        // Choice2Name, Choice2Category, Choice2Cost, Choice2Description, Choice2Feedback,
+        // Choice3Name, Choice3Category, Choice3Cost, Choice3Description, Choice3Feedback
         for (int i = 1; i < rows.Count; i++)
         {
             string[] row = rows[i];
 
-            if (row.Length < 17)
+            if (row.Length < 19)
             {
                 Debug.LogWarning("Skipping invalid daily plan row at index: " + i + " | Columns found: " + row.Length);
                 continue;
@@ -134,18 +133,35 @@ public class GameDataManager : MonoBehaviour
 
             List<DailyChoiceData> choices = new List<DailyChoiceData>
             {
-                new DailyChoiceData(row[4], ParseCategory(row[5]), ParseInt(row[6]), row[7]),
-                new DailyChoiceData(row[8], ParseCategory(row[9]), ParseInt(row[10]), row[11]),
-                new DailyChoiceData(row[12], ParseCategory(row[13]), ParseInt(row[14]), row[15])
+                new DailyChoiceData(
+                    Clean(row[4]),
+                    ParseCategory(row[5]),
+                    ParseInt(row[6]),
+                    Clean(row[7]),
+                    Clean(row[8])
+                ),
+                new DailyChoiceData(
+                    Clean(row[9]),
+                    ParseCategory(row[10]),
+                    ParseInt(row[11]),
+                    Clean(row[12]),
+                    Clean(row[13])
+                ),
+                new DailyChoiceData(
+                    Clean(row[14]),
+                    ParseCategory(row[15]),
+                    ParseInt(row[16]),
+                    Clean(row[17]),
+                    Clean(row[18])
+                )
             };
 
             DailyEventPlanData plan = new DailyEventPlanData(
                 ParseInt(row[0]),
-                row[1],
-                row[2],
-                row[3],
-                choices,
-                row[16]
+                Clean(row[1]),
+                Clean(row[2]),
+                Clean(row[3]),
+                choices
             );
 
             AllDailyPlans.Add(plan);

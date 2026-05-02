@@ -8,21 +8,18 @@ public class DailyEventPlanData
     public string scenarioName;
     public string scenarioText;
     public List<DailyChoiceData> choices = new List<DailyChoiceData>();
-    public string designPurpose;
 
     public DailyEventPlanData(
         int day,
         string dayName,
         string scenarioName,
         string scenarioText,
-        List<DailyChoiceData> choices,
-        string designPurpose)
+        List<DailyChoiceData> choices)
     {
         this.day = day;
         this.dayName = dayName;
         this.scenarioName = scenarioName;
         this.scenarioText = scenarioText;
         this.choices = choices;
-        this.designPurpose = designPurpose;
     }
 }
