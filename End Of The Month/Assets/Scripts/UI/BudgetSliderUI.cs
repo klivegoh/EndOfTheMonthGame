@@ -18,8 +18,8 @@ public class BudgetSliderUI : MonoBehaviour
 
     private void UpdateBudget(float value)
     {
-        int percent = Mathf.RoundToInt(value * 100);
-        int money = Mathf.RoundToInt(budgetManager.startingBalance * value);
+        int percent = Mathf.RoundToInt(value);
+        int money = Mathf.RoundToInt(budgetManager.startingBalance * (percent / 100f));
 
         percentText.text = percent + "%";
         moneyText.text = "$" + money;

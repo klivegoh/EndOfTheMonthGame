@@ -1,27 +1,22 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class GameplayManager : MonoBehaviour
 {
     [Header("Managers")]
+    [SerializeField] private GameDataManager gameDataManager;
     [SerializeField] private BudgetManager budgetManager;
-    [SerializeField] private CardDeckManager deckManager;
     [SerializeField] private UIManager uiManager;
 
-    [Header("Card UI")]
+    [Header("Choice UI")]
     [SerializeField] private List<DecisionCardUI> cardSlots;
 
     [Header("Game Settings")]
     [SerializeField] private int maxDays = 7;
 
     private int currentDay = 1;
-
     private bool hasStarted = false;
-
-    private void Start()
-    {
-        
-    }
+    private DailyEventPlanData currentPlan;
 
     public void BeginRun()
     {
@@ -34,18 +29,29 @@ public class GameplayManager : MonoBehaviour
         StartDay();
     }
 
-    public void StartDay()
+    private void StartDay()
     {
         uiManager.UpdateDayText(currentDay, maxDays);
 
-        List<DecisionCardData> drawnCards = deckManager.DrawCards(3, currentDay);
+        currentPlan = gameDataManager.GetPlanForDay(currentDay);
+
+        if (currentPlan == null)
+        {
+            uiManager.ShowEventPrompt("No daily plan found for Day " + currentDay + ".");
+            uiManager.ShowFeedback("Check DailyEventPlan.csv has a row for this day.");
+            HideAllCards();
+            return;
+        }
+
+        uiManager.ShowEventPrompt(currentPlan.scenarioText);
+        uiManager.ShowFeedback(currentPlan.designPurpose);
 
         for (int i = 0; i < cardSlots.Count; i++)
         {
-            if (i < drawnCards.Count)
+            if (i < currentPlan.choices.Count)
             {
                 cardSlots[i].gameObject.SetActive(true);
-                cardSlots[i].Setup(drawnCards[i], this);
+                cardSlots[i].Setup(currentPlan.choices[i], this);
             }
             else
             {
@@ -54,12 +60,12 @@ public class GameplayManager : MonoBehaviour
         }
     }
 
-    public void PlayCard(DecisionCardData card)
+    public void PlayChoice(DailyChoiceData choice)
     {
-        budgetManager.AddExpense(card.category, card.cost);
+        budgetManager.AddExpense(choice.category, choice.cost);
 
         uiManager.UpdateAllUI();
-        uiManager.ShowFeedback(card.feedbackText);
+        uiManager.ShowFeedback(choice.feedbackText);
 
         currentDay++;
 
@@ -75,6 +81,15 @@ public class GameplayManager : MonoBehaviour
 
     private void EndRun()
     {
+        HideAllCards();
         uiManager.ShowEndSummary();
+    }
+
+    private void HideAllCards()
+    {
+        foreach (DecisionCardUI cardSlot in cardSlots)
+        {
+            cardSlot.gameObject.SetActive(false);
+        }
     }
 }

@@ -9,16 +9,16 @@ public class DecisionCardUI : MonoBehaviour
     [SerializeField] private TMP_Text descriptionText;
     [SerializeField] private Button button;
 
-    private DecisionCardData cardData;
+    private DailyChoiceData choiceData;
     private GameplayManager gameplayManager;
 
-    public void Setup(DecisionCardData data, GameplayManager manager)
+    public void Setup(DailyChoiceData data, GameplayManager manager)
     {
-        cardData = data;
+        choiceData = data;
         gameplayManager = manager;
 
-        nameText.text = data.cardName;
-        descriptionText.text = data.description;
+        nameText.text = data.choiceName;
+        descriptionText.text = data.feedbackText;
 
         if (data.cost < 0)
         {
@@ -39,6 +39,6 @@ public class DecisionCardUI : MonoBehaviour
 
     private void OnClicked()
     {
-        gameplayManager.PlayCard(cardData);
+        gameplayManager.PlayChoice(choiceData);
     }
 }

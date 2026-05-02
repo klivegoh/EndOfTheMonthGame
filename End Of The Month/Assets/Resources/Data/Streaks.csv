@@ -1,0 +1,4 @@
+StreakID,StreakName,StreakType,RewardPerDay,UnlockAfterDays,BonusMessage
+STREAK_BUDGET,Budget Master,ConsecutiveDaysNoOverspend,2,1,You did not overspend today. Keep it up!
+STREAK_SAVER,Savings Protector,ConsecutiveSavingsActions,1,2,You protected your savings goal. Great discipline!
+STREAK_BALANCE,Balanced Spender,AllCategoriesWithin80Percent,3,3,All spending is balanced. Excellent budgeting!

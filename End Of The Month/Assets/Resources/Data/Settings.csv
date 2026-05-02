@@ -1,9 +1,11 @@
-Key,Value,Type,Unity Field,Notes
-StartingBalance,120,int,startingBalance,Player's scholarship allowance for a short demo run.
-RunLengthDays,7,int,runLengthDays,Use 7 turns to represent one week; enough for a 1-minute demo.
-CardsPerDay,3,int,cardsPerDay,Number of choices shown each turn.
-DefaultSavingsGoal,50,int,defaultSavingsGoal,Shown as the target in the HUD.
-WarningPercent,80%,float,warningPercent,Category bar turns warning state at 80% used.
-OverBudgetPercent,100%,float,overBudgetPercent,Category bar shows OVER at 100%+ used.
-StartingDayLabel,Monday,string,startingDayLabel,Optional display label only.
-RandomSeed,12345,int,randomSeed,Use fixed seed for stable assessment demo; remove later.
+Key,Value,Type
+StartingBalance,120,int
+RunLengthDays,7,int
+CardsPerDay,3,int
+DefaultSavingsGoal,50,int
+StreakBonusThreshold,3,int
+StreakBonusAmount,2,int
+RandomSeed,12345,int
+,,
+FilteringMode,Category+CardType+DayRange,string
+FallbackCardType,Generic,string

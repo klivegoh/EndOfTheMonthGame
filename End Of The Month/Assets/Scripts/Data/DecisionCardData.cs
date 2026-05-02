@@ -15,6 +15,8 @@ public class DecisionCardData
     public bool isActive;
     public string description;
     public string feedbackText;
+    public string consequence;
+    public string contextSG;
 
     public DecisionCardData(
         string cardID,
@@ -28,7 +30,9 @@ public class DecisionCardData
         int maxDay,
         bool isActive,
         string description,
-        string feedbackText)
+        string feedbackText,
+        string consequence,
+        string contextSG)
     {
         this.cardID = cardID;
         this.cardName = cardName;
@@ -42,5 +46,7 @@ public class DecisionCardData
         this.isActive = isActive;
         this.description = description;
         this.feedbackText = feedbackText;
+        this.consequence = consequence;
+        this.contextSG = contextSG;
     }
 }

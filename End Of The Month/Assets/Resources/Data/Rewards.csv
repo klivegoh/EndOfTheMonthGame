@@ -1,0 +1,5 @@
+RewardID,RewardName,TriggerCondition,RewardType,RewardValue,DisplayMessage
+REW_HALF_SAVED,50% Milestone,SavingsReachedHalfGoal,Badge,1,You saved 50% of your goal!
+REW_ZERO_OVERSPEND,Perfect Week,NoCategoriesTotalOverspend,Badge,2,Perfect week. You stayed in every budget.
+REW_BONUS_DAYS,Resilient Spender,RecoveredFromLowBalance,Bonus,5,You managed to recover when funds were low.
+REW_ALL_CATEGORIES,Well Rounded,UsedAllFourCategories,Badge,1,You made decisions across all categories.
