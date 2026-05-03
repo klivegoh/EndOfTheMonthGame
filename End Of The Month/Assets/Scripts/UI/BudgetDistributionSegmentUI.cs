@@ -7,13 +7,21 @@ public class BudgetDistributionSegmentUI : MonoBehaviour
     public CategoryType category;
     public LayoutElement layoutElement;
     public TMP_Text labelText;
+    public bool isUnallocated;
 
-    public void UpdateSegment(BudgetCategory data, int startingBalance)
+    public void UpdateSegment(BudgetCategory data, int startingBalance, int percentOverride = -1)
     {
-        if (data == null || startingBalance <= 0) return;
+        int displayPercent = 0;
 
-        float percent = (float)data.allocatedAmount / startingBalance;
-        int displayPercent = Mathf.RoundToInt(percent * 100f);
+        if (percentOverride >= 0)
+        {
+            displayPercent = percentOverride;
+        }
+        else if (data != null && startingBalance > 0)
+        {
+            float percent = (float)data.allocatedAmount / startingBalance;
+            displayPercent = Mathf.RoundToInt(percent * 100f);
+        }
 
         layoutElement.minWidth = 0;
         layoutElement.preferredWidth = 0;
@@ -21,7 +29,7 @@ public class BudgetDistributionSegmentUI : MonoBehaviour
 
         if (labelText != null)
         {
-            labelText.text = displayPercent + "%";
+            labelText.text = displayPercent > 0 ? displayPercent + "%" : "";
         }
     }
 }

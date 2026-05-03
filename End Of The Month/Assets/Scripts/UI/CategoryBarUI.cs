@@ -27,6 +27,6 @@ public class CategoryBarUI : MonoBehaviour
 
         bool overBudget = data.IsOverBudget;
         warningText.gameObject.SetActive(overBudget);
-        warningText.text = overBudget ? "OVER" : "";
+        warningText.text = overBudget ? "OVER!" : "";
     }
 }

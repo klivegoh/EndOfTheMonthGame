@@ -107,7 +107,11 @@ public class GameplayManager : MonoBehaviour
             return;
         }
 
-        budgetManager.AddExpense(choice.category, choice.cost);
+        int costAmount = Mathf.Abs(choice.cost);
+
+        budgetManager.AddExpense(choice.category, costAmount);
+
+        
 
         if (streakManager != null)
         {
@@ -186,5 +190,28 @@ public class GameplayManager : MonoBehaviour
         }
 
         return isValid;
+    }
+
+
+    public void RestartRun()
+    {
+        if (!HasRequiredReferences())
+        {
+            return;
+        }
+
+        hasStarted = false;
+        currentDay = 1;
+        currentPlan = null;
+
+        budgetManager.ResetBudget();
+        uiManager.ResetUI();
+
+        BeginRun();
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

@@ -1,5 +1,5 @@
 Key,Value,Type
-StartingBalance,120,int
+StartingBalance,60,int
 RunLengthDays,7,int
 CardsPerDay,3,int
 DefaultSavingsGoal,50,int

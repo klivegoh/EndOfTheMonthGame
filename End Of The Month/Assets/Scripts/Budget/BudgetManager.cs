@@ -109,4 +109,14 @@ public class BudgetManager : MonoBehaviour
 
         return total;
     }
+    public void ResetBudget()
+    {
+        currentBalance = startingBalance;
+
+        foreach (BudgetCategory category in categories)
+        {
+            category.spentAmount = 0;
+        }
+    }
+
 }

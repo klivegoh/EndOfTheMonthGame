@@ -5,6 +5,7 @@ public class BudgetAllocationController : MonoBehaviour
     [SerializeField] private BudgetManager budgetManager;
     [SerializeField] private BudgetSliderUI[] sliders;
     [SerializeField] private BudgetDistributionBarUI distributionBarUI;
+    [SerializeField] private BudgetSummaryUI budgetSummaryUI;
 
     private const int TotalLimit = 100;
 
@@ -83,6 +84,11 @@ public class BudgetAllocationController : MonoBehaviour
         if (distributionBarUI != null)
         {
             distributionBarUI.UpdateBar();
+        }
+
+        if (budgetSummaryUI != null)
+        {
+            budgetSummaryUI.UpdateSummary();
         }
     }
 
